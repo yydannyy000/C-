@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                Random rn = new Random();
+                checked
+                {
+                    while (true)
+                    {
+                        Console.WriteLine("Pokemon Go Ball[Level]：Regular(Red) Ball[1 - 50]；Great(Blue) Ball[51 - 90]；Ultra(Black) Ball[91 - 100]");
+                        Console.WriteLine();
+                        Console.WriteLine("Input測試次數 =? Time Interval(毫秒) =?");
+                        string[] str = Console.ReadLine().Split(' ');
+                        int Input = int.Parse(str[0]);
+                        int ms = int.Parse(str[1]);
+                        int r = 0, b = 0, k = 0;
+                        Console.WriteLine("\n");
+                        for (int i = 1; i <= Input; i++)
+                        {
+                            int Lv = rn.Next(1, 101);
+
+                            if (Lv >= 1 && Lv <= 50)
+                            {
+                                Console.WriteLine(i +"\nPokemon Go[Level<1,100>] : " + Lv);
+                                Console.WriteLine("Red Ball Only" + "\n\n");
+                                r++;
+                            }
+                            else if (Lv >= 51 && Lv <= 90)
+                            {
+                                int ball = rn.Next(0, 2);
+                                if (ball == 0)
+                                {
+                                    Console.WriteLine(i + "\nPokemon Go[Level<1,100>] : " + Lv);
+                                    Console.WriteLine("Red|Blue|Black Ball：Red" + "\n");
+                                    r++;
+                                }
+
+                                if (ball == 1)
+                                {
+                                    Console.WriteLine(i + "\nPokemon Go[Level<1,100>] : " + Lv);
+                                    Console.WriteLine("Red|Blue|Black Ball：Blue" + "\n");
+                                    b++;
+                                }
+                            }
+                            else
+                            {
+                                int ball = rn.Next(0, 3);
+                                if (ball == 0)
+                                {
+                                    Console.WriteLine(i + "\nPokemon Go[Level<1,100>] : " + Lv);
+                                    Console.WriteLine("Red|Blue|Black Ball：Red" + "\n");
+                                    r++;
+                                }
+                                if (ball == 1)
+                                {
+                                    Console.WriteLine(i + "\nPokemon Go[Level<1,100>] : " + Lv);
+                                    Console.WriteLine("Red|Blue|Black Ball：Blue" + "\n");
+                                    b++;
+                                }
+                                if (ball == 2)
+                                {
+                                    Console.WriteLine(i + "\nPokemon Go[Level<1,100>] : " + Lv);
+                                    Console.WriteLine("Red|Blue|Black Ball：Black" + "\n");
+                                    k++;
+                                }
+                            }
+                        }
+                        System.Threading.Thread.Sleep(ms);
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Red Ball:" + r);
+                        Console.WriteLine("Blue Ball:" + b);
+                        Console.WriteLine("Black Ball:" + k);
+                        Console.WriteLine("===========================");
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                Console.WriteLine();
+                Console.ReadKey();
+            }
+        }
+    }
+}
